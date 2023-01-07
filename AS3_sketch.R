@@ -10,10 +10,10 @@ dhill_function <- function(x){
 x=seq(-3,3, 0.01)
 plot(x, hill_function(x), type='l', col='dark green', main="Hiking with friends", xlab="Distance in Km", ylab="Altitude (x100m)")
 
-dx <- 1/1000
+dx <- 1/10
 x_1 <- 2.5
 if (hill_function(x_1+dx) > hill_function(x_1)) {
-  dx <- -1/1000
+  dx <- -1/10
 } 
 
 # This is the starting point
