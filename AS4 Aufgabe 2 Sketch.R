@@ -14,3 +14,9 @@ ggplot(data = sel_dates, aes(x=StartShow, y=Deutschland, group = 1)) + geom_line
 
 ## Aufgabe (b) 
 library(reshape2)
+dan <- c()
+for (i in length(pricesraw)) {
+  dan <- append (dan,(pricesraw$Dänemark_1 + pricesraw$Dänemark_2)/2)
+}
+pricesraw$Dänemark <- dan
+
