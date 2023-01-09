@@ -12,5 +12,5 @@ sel_dates <- subset(pricesraw, (Date == '2022-02-24' | Date == '2022-06-14' | Da
 ggplot(data = sel_dates, aes(x=StartShow, y=Deutschland, group = 1)) + geom_line(colour = "blue") + facet_grid(rows=vars(sel_dates$Date), scales = "fixed") + labs(y="Preis",x="Uhrzeit",title = "Deutschland") + theme(axis.text.x = element_text(angle = 90))
 
 
-## Aufgabe (b)
+## Aufgabe (b) 
 library(reshape2)
