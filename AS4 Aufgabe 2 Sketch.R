@@ -23,10 +23,12 @@ for (i in length(pricesraw)) {
 }
 # Adding the column with the values
 pricesraw$Dänemark <- dan
-# Deleting the rows for Dänemark_ and ..._2
-pricesraw <- pricesraw[-c(6,7)]
+# Deleting the rows for Dänemark_ and ..._2 in a new data frame
+pricesraw_clean <- pricesraw[-c(6,7)]
 ### Aggregate with max price per day and per country
 # Working data set with only needed columns
-sel_prices <- subset(pricesraw, select = -c(Start, End, StartShow))
+sel_prices <- subset(pricesraw_clean, select = -c(Start, End, StartShow))
 # Aggregate, store in max_prices
-max_prices <- aggregate(sel_prices, by = list(sel_prices$Date), FUN = max)
+max_prices <- aggregate(sel_prices[,colnames(sel_prices) != "Date"], by = list(sel_prices$Date), FUN = max)
+# Melting
+molted_max_prices <- melt(max_prices, id.vars = "Group.1")
