@@ -14,9 +14,19 @@ ggplot(data = sel_dates, aes(x=StartShow, y=Deutschland, group = 1)) + geom_line
 
 ## Aufgabe (b) 
 library(reshape2)
+# Empty vector to hold the mean value for Danmark
 dan <- c()
+# Create mean value for all rows in pricesraw
 for (i in length(pricesraw)) {
-  dan <- append (dan,(pricesraw$Dänemark_1 + pricesraw$Dänemark_2)/2)
+    # Add the mean value to the vector
+    dan <- append (dan,(pricesraw$Dänemark_1 + pricesraw$Dänemark_2)/2)
 }
+# Adding the column with the values
 pricesraw$Dänemark <- dan
-
+# Deleting the rows for Dänemark_ and ..._2
+pricesraw <- pricesraw[-c(6,7)]
+### Aggregate with max price per day and per country
+# Working data set with only needed columns
+sel_prices <- subset(pricesraw, select = -c(Start, End, StartShow))
+# Aggregate, store in max_prices
+max_prices <- aggregate(sel_prices, by = list(sel_prices$Date), FUN = max)
